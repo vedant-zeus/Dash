@@ -1,5 +1,5 @@
 import React from 'react';
-import { Trophy, Zap, Calendar, Award, Star, MapPin, CheckCircle, Circle, Lock } from 'lucide-react';
+import { Trophy, Zap, Calendar, Award, MapPin } from 'lucide-react';
 
 const RightSidebar: React.FC = () => {
   const roadmapItems = [
@@ -91,86 +91,93 @@ const RightSidebar: React.FC = () => {
         </div>
       </div>
 
-      {/* Course Roadmap */}
-      <div className="bg-gradient-to-br from-[#1B263B] to-[#0D1B2A] rounded-2xl p-6 shadow-2xl border border-[#415A77]">
-        <div className="flex items-center space-x-3 mb-6">
+      {/* Game-Style Learning Path */}
+      <div className="bg-gradient-to-br from-[#1B263B] to-[#0D1B2A] rounded-2xl p-6 shadow-2xl border border-[#415A77] relative overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0 bg-gradient-to-br opacity-10">
+          <div className="absolute top-4 left-4 w-16 h-16 bg-blue-400 rounded-full blur-xl opacity-30"></div>
+          <div className="absolute bottom-8 right-8 w-20 h-20 bg-green-400 rounded-full blur-xl opacity-30"></div>
+          <div className="absolute top-1/2 left-1/3 w-12 h-12 bg-yellow-400 rounded-full blur-xl opacity-30"></div>
+        </div>
+
+        <div className="flex items-center space-x-3 mb-6 relative z-10">
           <div className="w-8 h-8 bg-gradient-to-r from-blue-400 to-purple-400 rounded-lg flex items-center justify-center">
             <MapPin className="text-white" size={16} />
           </div>
-          <h2 className="text-xl font-bold text-white">Class 9 Roadmap</h2>
+          <h2 className="text-xl font-bold text-white">Class 9 Learning Journey</h2>
         </div>
 
-        <div className="space-y-3">
-          {roadmapItems.map((item, index) => (
-            <div key={item.id} className="flex items-center space-x-4">
-              <div className="flex flex-col items-center">
+        {/* Game Map Container */}
+        <div className="relative h-96 z-10">
+          {/* Decorative Elements */}
+          <div className="absolute top-12 left-12 text-yellow-400 text-sm opacity-60">✨</div>
+          <div className="absolute top-24 right-10 text-pink-400 text-sm opacity-60">🌸</div>
+          <div className="absolute bottom-16 left-16 text-green-400 text-base opacity-60">🌳</div>
+          <div className="absolute top-36 right-8 text-yellow-400 text-sm opacity-60">⭐</div>
+          <div className="absolute bottom-32 right-14 text-pink-400 text-sm opacity-60">🌺</div>
+          <div className="absolute top-2 right-6 text-yellow-400 text-xl animate-bounce">🏆</div>
+
+          
+            
+
+          {/* Level Nodes */}
+          {roadmapItems.map((item, index) => {
+            const positions = [
+              { top: '340px', left: '30px' },   // Number Systems
+              { top: '290px', left: '120px' },  // Polynomials  
+              { top: '240px', left: '250px' },  // Coordinate Geometry
+              { top: '200px', left: '180px' },  // Linear Equations
+              { top: '150px', left: '80px' },   // Triangles
+              { top: '100px', left: '200px' },  // Quadrilaterals
+              { top: '50px', left: '120px' },   // Circles
+              { top: '10px', left: '280px' },   // Surface Areas
+            ];
+
+            return (
+              <div
+                key={item.id}
+                className="absolute flex flex-col items-center cursor-pointer hover:scale-110 transition-transform duration-200"
+                style={{ top: positions[index].top, left: positions[index].left }}
+              >
                 <div className={`
-                  w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all duration-300
+                  w-11 h-11 rounded-full flex items-center justify-center text-xs font-bold text-white border-3 relative z-10
                   ${item.completed 
-                    ? 'bg-green-400 border-green-400' 
+                    ? 'bg-gradient-to-br from-green-400 to-green-600 border-green-500 shadow-lg shadow-green-400/30' 
                     : item.current 
-                      ? 'bg-blue-400 border-blue-400 animate-pulse' 
-                      : 'bg-[#0D1B2A] border-[#415A77]'
+                      ? 'bg-gradient-to-br from-blue-400 to-blue-600 border-blue-500 shadow-lg shadow-blue-400/30 animate-pulse' 
+                      : 'bg-gradient-to-br from-gray-400 to-gray-600 border-gray-500'
                   }
                 `}>
-                  {item.completed ? (
-                    <CheckCircle className="text-white" size={16} />
-                  ) : item.current ? (
-                    <Circle className="text-white" size={16} />
-                  ) : (
-                    <Lock className="text-[#778DA9]" size={14} />
-                  )}
+                  {item.completed ? '✓' : item.current ? item.id : '🔒'}
                 </div>
-                {index < roadmapItems.length - 1 && (
-                  <div className={`
-                    w-0.5 h-6 mt-1
-                    ${item.completed ? 'bg-green-400' : 'bg-[#415A77]'}
-                  `}></div>
-                )}
-              </div>
-              
-              <div className="flex-1">
-                <h4 className={`
-                  font-medium text-sm
-                  ${item.completed 
-                    ? 'text-green-400' 
-                    : item.current 
-                      ? 'text-blue-400' 
-                      : 'text-[#778DA9]'
-                  }
-                `}>
-                  {item.title}
-                </h4>
-                <p className="text-xs text-[#778DA9]">
-                  {item.completed 
-                    ? 'Completed' 
-                    : item.current 
-                      ? 'In Progress' 
-                      : 'Locked'
-                  }
-                </p>
-              </div>
-
-              {item.completed && (
-                <div className="flex space-x-1">
-                  <Star className="text-yellow-400" size={12} />
-                  <Star className="text-yellow-400" size={12} />
-                  <Star className="text-yellow-400" size={12} />
+                
+                <div className="bg-[#0D1B2A]/90 border border-[#415A77] rounded-lg px-2 py-1 mt-2 backdrop-blur-sm">
+                  <div className={`text-xs font-medium text-center max-w-20 leading-tight
+                    ${item.completed 
+                      ? 'text-green-400' 
+                      : item.current 
+                        ? 'text-blue-400' 
+                        : 'text-gray-400'
+                    }
+                  `}>
+                    {item.title}
+                  </div>
                 </div>
-              )}
-            </div>
-          ))}
+              </div>
+            );
+          })}
         </div>
 
-        <div className="mt-6 p-4 bg-gradient-to-r from-[#0D1B2A] to-[#1B263B] rounded-xl border border-[#415A77]">
+        {/* Progress Section */}
+        <div className="mt-6 p-4 bg-gradient-to-r from-[#0D1B2A] to-[#1B263B] rounded-xl border border-[#415A77] relative z-10">
           <div className="flex justify-between items-center mb-2">
             <span className="text-sm text-[#778DA9]">Course Progress</span>
             <span className="text-sm font-bold text-white">38%</span>
           </div>
-          <div className="w-full bg-[#1B263B] rounded-full h-2">
-            <div className="bg-gradient-to-r from-green-400 to-blue-400 h-2 rounded-full" style={{ width: '38%' }}></div>
+          <div className="w-full bg-[#1B263B] rounded-full h-2 mb-2">
+            <div className="bg-gradient-to-r from-[#22c55e] to-[#3b82f6] h-2 rounded-full transition-all duration-1000" style={{ width: '38%' }}></div>
           </div>
-          <p className="text-xs text-[#778DA9] mt-2 text-center">3 of 8 topics mastered</p>
+          <p className="text-xs text-[#778DA9] text-center">3 of 8 topics mastered</p>
         </div>
       </div>
     </div>

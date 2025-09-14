@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ChevronDown, User, Trophy, Zap, Calendar, Settings, Sparkles } from 'lucide-react';
+import { ChevronDown, User, Trophy, Zap, Calendar, Settings, BookOpen } from 'lucide-react';
+import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -9,28 +10,23 @@ const Header: React.FC = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-6">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-[#415A77] to-[#778DA9] rounded-full flex items-center justify-center shadow-lg">
-              <Sparkles className="text-white" size={24} />
+           <div className="flex items-center space-x-2">
+              <div className="w-10 h-10 bg-gradient-to-r from-[#415A77] to-[#778DA9] rounded-full flex items-center justify-center animate-pulse">
+                <BookOpen className="w-6 h-6 text-white" />
+              </div>
+              <span className="text-2xl font-bold bg-gradient-to-r from-[#778DA9] to-[#E0E1DD] bg-clip-text text-transparent">
+                Gyaan Sagar
+              </span>
             </div>
             <div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-[#778DA9] via-white to-[#E0E1DD] bg-clip-text text-transparent tracking-wide">
-                Gyaan Sagar
-              </h1>
-              <p className="text-sm text-[#778DA9] font-medium">Adventure Awaits!</p>
+              
+              
             </div>
           </div>
         </div>
         
         <div className="flex items-center space-x-6">
           <div className="hidden md:flex items-center space-x-4 text-sm">
-            <div className="flex items-center space-x-2 bg-[#1B263B] px-3 py-2 rounded-lg">
-              <Trophy className="text-yellow-400" size={16} />
-              <span className="text-[#E0E1DD]">Level 12</span>
-            </div>
-            <div className="flex items-center space-x-2 bg-[#1B263B] px-3 py-2 rounded-lg">
-              <Zap className="text-orange-400" size={16} />
-              <span className="text-[#E0E1DD]">2450 XP</span>
-            </div>
           </div>
           
           <div className="relative">
@@ -43,7 +39,7 @@ const Header: React.FC = () => {
               </div>
               <div className="text-left hidden md:block">
                 <p className="text-sm font-medium text-white">Praveen Kumar</p>
-                <p className="text-xs text-[#778DA9]">Grade 9 Explorer</p>
+                <p className="text-xs text-[#778DA9]">Grade 9</p>
               </div>
               <ChevronDown size={16} className={`transform transition-transform text-[#778DA9] ${isDropdownOpen ? 'rotate-180' : ''}`} />
             </button>
@@ -57,7 +53,7 @@ const Header: React.FC = () => {
                     </div>
                     <div>
                       <h3 className="font-bold text-lg text-white">Praveen Kumar</h3>
-                      <p className="text-sm text-[#778DA9]">Grade 9 Explorer</p>
+                      <p className="text-sm text-[#778DA9]">Grade 9</p>
                       <div className="flex items-center space-x-2 mt-1">
                         <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                         <span className="text-xs text-green-400">Online</span>
@@ -98,7 +94,7 @@ const Header: React.FC = () => {
                 <div className="p-3">
                   <button className="w-full flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-[#415A77] transition-colors text-left">
                     <User size={18} className="text-[#778DA9]" />
-                    <span className="text-white">View Profile</span>
+                    <a href = "http://localhost:5176/" className="text-white hover:text-blue-400 transition-colors">View Profile</a>
                   </button>
                   <button className="w-full flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-[#415A77] transition-colors text-left">
                     <Settings size={18} className="text-[#778DA9]" />

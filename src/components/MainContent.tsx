@@ -12,7 +12,7 @@ const MainContent: React.FC = () => {
       xp: 2450,
       timeSpent: '45 hrs',
       color: 'bg-gradient-to-r from-blue-500 to-blue-600',
-      isActive: true
+      isActive: false
     },
     {
       title: 'Physics',
