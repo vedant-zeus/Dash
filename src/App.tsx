@@ -1,19 +1,18 @@
 import React from 'react';
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-import MainContent from './components/MainContent';
-import RightSidebar from './components/RightSidebar';
+import { useAuth } from './AuthContext';
+import Dashboard from './Dashboard';
+import OnboardingFlow from './components/onboarding/OnboardingFlow';
 
 function App() {
+  const { session } = useAuth();
+
+  // This is the core logic:
+  // If a user session exists, show the Dashboard.
+  // Otherwise, show the OnboardingFlow/login page.
   return (
-    <div className="min-h-screen bg-[#E0E1DD]">
-      <Header />
-      <div className="flex">
-        <Sidebar />
-        <MainContent />
-        <RightSidebar />
-      </div>
-    </div>
+    <>
+      {session ? <Dashboard /> : <OnboardingFlow />}
+    </>
   );
 }
 

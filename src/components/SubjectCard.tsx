@@ -1,3 +1,5 @@
+//SubjectCard.tsx
+
 import React from 'react';
 import { BookOpen, Zap, Trophy, Clock } from 'lucide-react';
 

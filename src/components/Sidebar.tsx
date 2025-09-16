@@ -1,3 +1,5 @@
+//Sidebar.tsx
+
 import React from 'react';
 import { Lock, CheckCircle, Star } from 'lucide-react';
 
